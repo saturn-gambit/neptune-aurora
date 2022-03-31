@@ -17,7 +17,9 @@ dotenv.config()
 const {
   PORT,
   PRIVATE_KEY_PATH,
-  PUBLIC_KEY_PATH
+  PUBLIC_KEY_PATH,
+  PRIVATE_KEY,
+  PUBLIC_KEY
 } = process.env
 
 const app = express()
@@ -34,7 +36,7 @@ app.get('/api/v2/jwt', async (request, response) => {
       jti,
       exp
     }
-    const [private_key, public_key] = get_key_pair(PRIVATE_KEY_PATH, PUBLIC_KEY_PATH)
+    const [private_key, public_key] = (PRIVATE_KEY && PUBLIC_KEY) ? [PRIVATE_KEY, PUBLIC_KEY] : get_key_pair(PRIVATE_KEY_PATH, PUBLIC_KEY_PATH)
     const jwt = await get_jwt(private_key, payload)
     const verification = await verify_jwt(jwt, public_key)
     response.send(jwt)
@@ -46,7 +48,7 @@ app.get('/api/v2/jwt', async (request, response) => {
 
 async function verify_middleware (request, response, next) {
   try {
-    const [private_key, public_key] = get_key_pair(PRIVATE_KEY_PATH, PUBLIC_KEY_PATH)
+    const [private_key, public_key] = (PRIVATE_KEY && PUBLIC_KEY) ? [PRIVATE_KEY, PUBLIC_KEY] : get_key_pair(PRIVATE_KEY_PATH, PUBLIC_KEY_PATH)
     const authorization = request.headers[`authorization`]
     const [scheme, jwt] = authorization.split(' ')
     const verification = await verify_jwt(jwt, public_key)
