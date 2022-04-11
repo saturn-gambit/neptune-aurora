@@ -1,0 +1,26 @@
+<!doctype html><html><head><style>
+
+</style><script>
+  console.log('v{{npm_package_version}}')
+  function view_log (message) {
+    const element = document.getElementById('view-log')
+    element.innerText = message
+  }
+  async function test_api () {
+    const r = await fetch(`http://localhost:12000/api/v2/jwt`)
+    const jwt = await r.text()
+    const Authorization = `Bearer ${jwt}`
+    const headers = { Authorization }
+    const r1 = await fetch(`http://localhost:12000/api/v2/eg-resource`, { headers })
+    const j = await r1.json()
+    console.log(j)
+    view_log(JSON.stringify(j, null, 2))
+  }
+</script></head><body onload="test_api()">
+  <section>
+    <h1>You've landed.</h1>
+    <h3>v{{npm_package_version}}</h3>
+    <p>Here hosts a RESTful API.</p>
+    <pre id="view-log"></pre>
+  </section>
+</body></html>
