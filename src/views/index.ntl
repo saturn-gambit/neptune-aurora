@@ -16,7 +16,19 @@
     console.log(j)
     view_log(JSON.stringify(j, null, 2))
   }
-</script></head><body onload="test_api()">
+  async function test_api_v3 () {
+    const config = {
+        method: `POST`,
+        headers: { [`Content-Type`]: `application/json` },
+        body: JSON.stringify({ username: `thor`, password: `hammer` })
+    }
+    const r = await fetch(`http://localhost:12000/api/v3/authenticate`, config)
+    const r1 = await fetch(`http://localhost:12000/api/v3/eg-resource`)
+    const j = await r1.json()
+    console.log(j)
+    view_log(JSON.stringify(j, null, 2))
+  }
+</script></head><body onload="test_api_v3()">
   <section>
     <h1>You've landed.</h1>
     <h3>v{{npm_package_version}}</h3>

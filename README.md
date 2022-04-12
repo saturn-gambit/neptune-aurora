@@ -29,11 +29,11 @@ curl localhost:12000/api/v3/authenticate \
   -v \
   -X POST \
   -H "Content-Type: application/json" \
-  -d '{ "username": "0x0000", "password": "0x0000" }'
+  -d '{ "username": "braun", "password": "braun" }'
 ```
 
 ```
 curl localhost:12000/api/v3/eg-resource \
   -v \
-  --cookie "jwt=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjB4MDAwMCIsImV4cGlyZXMiOjE2NDk2ODEyNjE0NjIsImlhdCI6MTY0OTY4MDkxMX0.oSnoKaq5GWutigVtGo50x0WQee3LaRE9vCAgLMHVk7Tuv2omjZQBDQ66ZoaUAwvCFQhON4_nc1DTir1TOvBJbQKpvLDLfn7_8KNidX7mwroPtfv0r50cJMQlKWlWDSD0ca2hFZCcNhRYIBx7EpvmVj-4dCQLRVOM6eefL630Roox1W4pAno0tSzFEkIbq_7tF4V2xkiyIwZRBz1g5w9QvCJQHzNkuUne28FpI3mqQtY1NFacT6C7lGKAMH6GSeF2cQWSqhzAEtXOXzRUcLfhIFQPaBFNBJhJdwDuAWrjiZpuoFQy7-njdhpH3vtkNXrwOudLjJgAbV41-JhhyylG0Q; Path=/; HttpOnly; Secure"
+  --cookie "jwt=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjB4MDAwMCIsImV4cGlyZXMiOjE2NDk3NjQ1NTg3NTcsImlhdCI6MTY0OTc2NDIwOH0.UFk_zgzdclmzu78cdDVPA6oiX5D76aqZQk8Gtbrax7HD2e9KaJPnCn8iLk0fClPYLu3_gwqx3oaFikAou_tJwVOi0ugzCXg0R1dbHFGgOJkrmrCMBxP-Cmah-_ctMQxQ4CRB595NGPIy7iol-HuUQ8ovQXbApCzK_ewgTWZby9OU2EF9UfcHGHSYjSKh7CpwQgcpwy9xjbCCb_Lzo4RhZoZXrCtmcaG0cDkSjoamJJxgKrIJPPz6X5ixdOo81uqi-YKpeKmgccU1qlIbCVXBuhVFiSIUUuIiayyfb_XW0GvppexQsuEdXf-fM68sS7_8E5OCBak-9ADgzFkAyfSwkQ; Path=/; HttpOnly; Secure"
 ```
