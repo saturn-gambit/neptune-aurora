@@ -397,9 +397,7 @@ function handle_live_killfeed (store) {
       const { sid, schannel, sportlist } = _params
       const query = `update servers set sactive = 1, schannel = $3, sportlist = $4 where sid = $1 and uid = $2 returning *`
       const params = [parseInt(sid), user.uid, schannel, sportlist]
-      console.log(params)
-      const result = store.query(query, params)
-      console.log(result)
+      const result = await store.query(query, params)
       const { rows } = result
       const [server] = rows
       if (server) {
