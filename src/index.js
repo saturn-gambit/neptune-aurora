@@ -542,11 +542,12 @@ async function parseServerLog (sid, user, serverLog, ftpPath, /** actually newes
       original: objectLine
     }
   })
+
+  const experimental = await client.channels.fetch(schannel)
   
   v2Feed.forEach((event, eventIndex) => {
     if (shouldKillfeed) {
       // killfeed
-      const experimental = client.channels.cache.find(channel => `${channel.id}` === `${schannel}`)
 
       const emitter = {
         emit: async (type, event) => {
@@ -786,7 +787,6 @@ async function parseServerLog (sid, user, serverLog, ftpPath, /** actually newes
         case `killed by Player`: return await a.then(async r => {
           return await new Promise(async (resolve, reject) => {
 
-            const experimental = client.channels.cache.find(channel => `${channel.id}` === `${schannel}`)
             let who, byWho, pvtype = ``,
             numTokens = 0, pscurrentsurvivaltime = 0,
             pscurrentkillstreak = 0, pscurrentsurvivaltime1 = 0,
