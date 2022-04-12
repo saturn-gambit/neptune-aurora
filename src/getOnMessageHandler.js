@@ -766,7 +766,7 @@ export function getOnMessageHandler (
           const desc = [
             loot.Price ? `\`${loot.Price}\`` : ``,
             `\`\`\`${JSON.stringify({ ...rest }, null, 2)}\`\`\``
-          ]
+          ].join('')
           const embed = new MessageEmbed()
             .setTitle(`${loot.Label} (${loot.ClassName})`)
             .setFooter(loot.Category)

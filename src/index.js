@@ -161,6 +161,12 @@ const setStatusChannel = (channel) => {
   return _statusChannel.channel = channel
 }
 
+const destroyLiveKillFeed = (sid) => {
+  if (killFeedTimeouts[sid] && killFeedTimeouts[sid].i) {
+    clearInterval(killFeedTimeouts[sid].i)
+  }
+}
+
 // Discord Helpers -----------------------------------------------------------------------------------
 
 const discordClient = new DiscordClient({
@@ -383,12 +389,6 @@ function handle_eg_resource () {
   }
 }
 
-const destroyLiveKillFeed = (sid) => {
-  if (killFeedTimeouts[sid] && killFeedTimeouts[sid].i) {
-    clearInterval(killFeedTimeouts[sid].i)
-  }
-}
-
 async function get_user (store, uname) {
   const query = `
     select
@@ -431,6 +431,7 @@ function handle_live_killfeed (store) {
           }
         }
         killfeedRef.restartKillfeed()
+        response.status(200).send()
       } else {
         throw new Error(`Bad request`)
       }
