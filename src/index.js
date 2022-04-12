@@ -392,7 +392,7 @@ const destroyLiveKillFeed = (sid) => {
 function handle_live_killfeed (store) {
   return (request, response) => {
     try {
-      const users = { uid: 1, uname: `braun` }
+      const user = { uid: 1, uname: `braun` }
       const { params: _params } = request
       const { sid, schannel, sportlist } = _params
       const query = `update servers set sactive = 1, schannel = $3, sportlist = $4 where sid = $1 and uid = $2 returning *`
