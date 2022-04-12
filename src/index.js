@@ -321,7 +321,7 @@ function verify_jwt_middleware_v3 () {
       const [private_key, public_key] = get_keys()
       const verification = await verify_jwt(jwt, public_key)
       request.verification = verification
-      // next()
+      next()
     } catch (error) {
       console.error(error)
       response.sendStatus(400)
