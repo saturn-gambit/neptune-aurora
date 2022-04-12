@@ -390,7 +390,7 @@ const destroyLiveKillFeed = (sid) => {
 }
 
 function handle_live_killfeed (store) {
-  return (request, response) => {
+  return async (request, response) => {
     try {
       const user = { uid: 1, uname: `braun` }
       const { params: _params } = request
