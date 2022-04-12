@@ -393,8 +393,8 @@ async function get_user (store, uname) {
   const query = `
     select
       uid, uname,
-      convert_from(decrypt(a.nakey::bytea, 'secret-key', 'bf'), 'utf-8') as nakey,
-      convert_from(decrypt(a.dakey::bytea, 'secret-key', 'bf'), 'utf-8') as dakey
+      convert_from(decrypt(nakey::bytea, 'secret-key', 'bf'), 'utf-8') as nakey,
+      convert_from(decrypt(dakey::bytea, 'secret-key', 'bf'), 'utf-8') as dakey
     from users
     where uname = $1
   `
