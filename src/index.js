@@ -389,10 +389,26 @@ const destroyLiveKillFeed = (sid) => {
   }
 }
 
+async function get_user (store, uname) {
+  const query = `
+    select
+      uid, uname,
+      convert_from(decrypt(a.nakey::bytea, 'secret-key', 'bf'), 'utf-8') as nakey,
+      convert_from(decrypt(a.dakey::bytea, 'secret-key', 'bf'), 'utf-8') as dakey
+    from users
+    where uname = $1
+  `
+  const params = [uname]
+  const result = await store.query(query, params)
+  const { rows } = result
+  const [user] = rows
+  return user
+}
+
 function handle_live_killfeed (store) {
   return async (request, response) => {
     try {
-      const user = { uid: 1, uname: `braun` }
+      const user = await get_user(store, `braun`)      
       const { params: _params } = request
       const { sid, schannel, sportlist } = _params
       const query = `update servers set sactive = 1, schannel = $3, sportlist = $4 where sid = $1 and uid = $2 returning *`
