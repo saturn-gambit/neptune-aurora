@@ -321,7 +321,7 @@ function verify_jwt_middleware_v3 () {
       const [private_key, public_key] = get_keys()
       const verification = await verify_jwt(jwt, public_key)
       request.verification = verification
-      next()
+      // next()
     } catch (error) {
       console.error(error)
       response.sendStatus(400)
@@ -392,7 +392,7 @@ const destroyLiveKillFeed = (sid) => {
 function handle_live_killfeed (store) {
   return (request, response) => {
     try {
-      const { params: _params, user } = req
+      const { params: _params, user } = request
       const { sid, schannel, sportlist } = _params
       const query = `update servers set sactive = 1, schannel = $3, sportlist = $4 where sid = $1 and uid = $2 returning *`
       const params = [parseInt(sid), user.uid, schannel, sportlist]
