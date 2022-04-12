@@ -876,7 +876,11 @@ async function parseServerLog (sid, user, serverLog, ftpPath, /** actually newes
               ` <https://dayz.ginfo.gg/#location=${coords.x};${coords.y}>`
             ].join('')
 
-            experimental.send(message)
+            try {
+              experimental.send(message)
+            } catch (e) {
+              console.error(e)
+            }
 
             try {
               const playerKilledPid = line.match(/(id=[a-zA-Z0-9_-]*)/g)[0].split('id=')[1]
